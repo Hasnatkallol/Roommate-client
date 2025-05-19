@@ -2,16 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   useEffect(() => {
     document.title = "SignUp";
   }, []);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const { createUser, signInWithGoogle, user, setUser, setLoading } =
     useContext(FirebaseAuthContext);
 
@@ -20,28 +21,42 @@ const Signup = () => {
     setSuccessMessage(false);
     setErrorMessage("");
     e.preventDefault();
+
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    setErrorMessage("");
-    setSuccessMessage(false);
-
     if (!/(?=.*\d)/.test(password)) {
-      setErrorMessage("Password must contain at least one number.");
+      Swal.fire(
+        "Weak Password",
+        "Password must contain at least one number.",
+        "warning"
+      );
       return;
     }
     if (!/(?=.*[a-z])/.test(password)) {
-      setErrorMessage("Password must contain at least one lowercase letter.");
+      Swal.fire(
+        "Weak Password",
+        "Password must contain at least one lowercase letter.",
+        "warning"
+      );
       return;
     }
     if (!/(?=.*[A-Z])/.test(password)) {
-      setErrorMessage("Password must contain at least one uppercase letter.");
+      Swal.fire(
+        "Weak Password",
+        "Password must contain at least one uppercase letter.",
+        "warning"
+      );
       return;
     }
     if (!/.{8,}/.test(password)) {
-      setErrorMessage("Password must be at least 6 characters long.");
+      Swal.fire(
+        "Weak Password",
+        "Password must be at least 8 characters long.",
+        "warning"
+      );
       return;
     }
 
@@ -50,11 +65,15 @@ const Signup = () => {
         const user = userCredential.user;
         console.log(user);
         setSuccessMessage(true);
+        Swal.fire("Success!", "Successfully registered!", "success");
+        setLoading(false);
+        navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setUser(user);
         setErrorMessage(error.message);
+        Swal.fire("Error", error.message, "error");
         setLoading(false);
       });
   };
@@ -64,22 +83,23 @@ const Signup = () => {
 
     signInWithGoogle()
       .then((result) => {
-        navigate(`${location.state ? location.state : "/"}`);
-
         setUser(result.user);
         setLoading(false);
         setSuccessMessage(true);
+        Swal.fire("Success!", "Signed up with Google successfully!", "success");
+        navigate(location.state || "/");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Error", error.message, "error");
       });
   };
 
   return (
     <div>
-      <div className="w-11/12 mx-auto my-10 card bg-base-200   max-w-sm shrink-0 shadow-2xl">
+      <div className="w-11/12 mx-auto my-10 card bg-base-200 max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
-          <h1 className="text-black font-semibold  text-center text-2xl">
+          <h1 className="text-black font-semibold text-center text-2xl">
             Register Your Account
           </h1>
           <form onSubmit={handleRegister} className="fieldset">
@@ -96,7 +116,7 @@ const Signup = () => {
               name="photo"
               type="text"
               className="input"
-              placeholder="photo link"
+              placeholder="Photo link"
               required
             />
             <label className="label">Email</label>
@@ -120,19 +140,23 @@ const Signup = () => {
               Register
             </button>
 
+            {/* You can keep these for fallback */}
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             {successMessage && (
-              <p className="text-green-500">Successfully Sign Up</p>
+              <p className="text-green-500">Successfully Signed Up</p>
             )}
           </form>
           <div>
-            <button onClick={singInGoogle} className="btn w-full btn-outline ">
-              <FcGoogle size={24}></FcGoogle>
-              SignUp With Google
+            <button
+              onClick={singInGoogle}
+              className="btn w-full btn-outline mt-4"
+            >
+              <FcGoogle size={24} />
+              Sign Up With Google
             </button>
           </div>
-          <h1 className="text-black font-semibold  text-center ">
-            Already have an account ?{" "}
+          <h1 className="text-black font-semibold text-center mt-4">
+            Already have an account?{" "}
             <Link className="text-red-600" to={"/login"}>
               Login
             </Link>

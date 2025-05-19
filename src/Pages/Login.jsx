@@ -1,24 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 const Login = () => {
   useEffect(() => {
     document.title = "Login";
   }, []);
+
   const navigate = useNavigate();
   const emailRef = useRef();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState(false);
   const { logIn, setUser, setLoading, signInWithGoogle } =
     useContext(FirebaseAuthContext);
   const location = useLocation();
-  console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setSuccessMessage(false);
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -26,9 +24,8 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        setErrorMessage("");
-        navigate(`${location.state ? location.state : "/"}`);
-        setSuccessMessage(true);
+        Swal.fire("Success!", "User logged in successfully", "success");
+        navigate(location.state || "/");
       })
       .catch((error) => {
         let message = "";
@@ -45,23 +42,23 @@ const Login = () => {
           default:
             message = "Login Failed!";
         }
-        setErrorMessage(message);
-        setSuccessMessage(false);
+
+        Swal.fire("Error", message, "error");
         setLoading(false);
       });
   };
 
   const singInGoogle = () => {
-    setSuccessMessage(false);
     signInWithGoogle()
       .then((result) => {
-        navigate(`${location.state ? location.state : "/"}`);
-        setSuccessMessage(true);
         setUser(result.user);
         setLoading(false);
+        Swal.fire("Success!", "Signed in with Google", "success");
+        navigate(location.state || "/");
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire("Error", error.message, "error");
       });
   };
 
@@ -72,12 +69,12 @@ const Login = () => {
           Login Your Account
         </h1>
         <div className="space-y-3">
-          <button onClick={singInGoogle} className="btn w-full btn-outline ">
-            <FcGoogle size={24}></FcGoogle>
+          <button onClick={singInGoogle} className="btn w-full btn-outline">
+            <FcGoogle size={24} />
             Login With Google
           </button>
         </div>
-        <form onSubmit={handleLogin} className="fieldset">
+        <form onSubmit={handleLogin} className="fieldset mt-4">
           <label className="label">Email</label>
           <input
             name="email"
@@ -95,20 +92,11 @@ const Login = () => {
             placeholder="Password"
             required
           />
-          <div>
-            {errorMessage && (
-              <p className="text-red-500 text-center font-bold">
-                {errorMessage}
-              </p>
-            )}
-            {successMessage && (
-              <p className="text-green-500">User logged in successfully</p>
-            )}
-          </div>
-          <div>
+          <div className="mt-2">
             <a
               href="https://mail.google.com/"
               target="_blank"
+              rel="noopener noreferrer"
               className="link text-blue-800 underline font-semibold link-hover"
             >
               Forgot password?
@@ -120,7 +108,7 @@ const Login = () => {
           </button>
         </form>
 
-        <h1 className="text-black font-semibold text-center">
+        <h1 className="text-black font-semibold text-center mt-4">
           Don't have an account?{" "}
           <Link className="text-red-600" to={"/signup"} state={location.state}>
             Sign up
