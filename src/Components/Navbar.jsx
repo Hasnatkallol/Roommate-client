@@ -159,25 +159,16 @@ const Navbar = () => {
               >
                 <li className="text-2xl mr-5">Home</li>
               </NavLink>
+
               <NavLink
                 className={({ isActive }) =>
                   isActive
                     ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
                     : ""
                 }
-                to={"/application"}
+                to={"/addtofindroommate"}
               >
-                <li className="text-2xl mr-5">Application</li>
-              </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                    : ""
-                }
-                to={"/myprofile"}
-              >
-                <li className="text-2xl mr-5">My Profile</li>
+                <li className="text-2xl mr-5">Add to Find Roommate</li>
               </NavLink>
 
               <NavLink
@@ -186,53 +177,52 @@ const Navbar = () => {
                     ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
                     : ""
                 }
-                to={"/companydetails"}
+                to={"/browselisting"}
               >
-                {/* <li className="text-2xl mr-5">Company Details</li> */}
+                <li className="text-2xl mr-5">Browse Listing</li>
               </NavLink>
 
-              <div className="flex">
-                {user ? (
-                  <div className="flex items-center gap-3">
-                    <NavLink to="/login">
-                      <button
-                        onClick={handleLogout}
-                        className="bg-gradient-to-r from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95"
-                      >
-                        Logout
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+                    : ""
+                }
+                to={"/mylisting"}
+              >
+                <li className="text-2xl mr-5">My Listing</li>
+              </NavLink>
+
+              <div className="flex items-center space-x-4">
+                {!user ? (
+                  <>
+                    <Link to="/login">
+                      <button className="text-2xl bg-blue-500 text-white px-4 py-2 rounded-lg">
+                        Login
                       </button>
-                    </NavLink>
-
-                    <Link to={"/myprofile"}>
-                      <img
-                        className="w-15 h-15  rounded-2xl"
-                        src={`${user ? user.photoURL : ""}`}
-                        alt=""
-                      />
                     </Link>
-                  </div>
+                    <Link to="/signup">
+                      <button className="text-2xl bg-green-500 text-white px-4 py-2 rounded-lg">
+                        Signup
+                      </button>
+                    </Link>
+                  </>
                 ) : (
                   <>
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                          : ""
-                      }
-                      to="/login"
+                    <button
+                      onClick={handleLogout} // You should define this function
+                      className="text-2xl bg-red-500 text-white px-4 py-2 rounded-lg"
                     >
-                      <li className="text-2xl mr-5">Login</li>
-                    </NavLink>
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                          : ""
-                      }
-                      to="/register"
-                    >
-                      <li className="text-2xl mr-5">Register</li>
-                    </NavLink>
+                      Logout
+                    </button>
+
+                    <Link to="/myprofile">
+                      <img
+                        className="w-[60px] h-[60px] object-cover rounded-2xl"
+                        src={user.photoURL}
+                        alt="User Profile"
+                      />
+                    </Link>
                   </>
                 )}
               </div>
