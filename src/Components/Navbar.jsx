@@ -196,33 +196,47 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 {!user ? (
                   <>
-                    <Link to="/login">
-                      <button className="text-2xl bg-blue-500 text-white px-4 py-2 rounded-lg">
-                        Login
-                      </button>
-                    </Link>
-                    <Link to="/signup">
-                      <button className="text-2xl bg-green-500 text-white px-4 py-2 rounded-lg">
-                        Signup
-                      </button>
-                    </Link>
+                    <NavLink
+                      to="/login"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-2xl btn bg-[#883b7a] text-white px-4 py-2 rounded-lg"
+                          : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
+                      }
+                    >
+                      Login
+                    </NavLink>
+
+                    <NavLink
+                      to="/signup"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-2xl btn bg-[#883b7a] text-white px-4 py-2 rounded-lg"
+                          : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
+                      }
+                    >
+                      Signup
+                    </NavLink>
                   </>
                 ) : (
                   <>
                     <button
-                      onClick={handleLogout} // You should define this function
-                      className="text-2xl bg-red-500 text-white px-4 py-2 rounded-lg"
+                      onClick={handleLogout}
+                      className="text-2xl btn bg-red-500 text-white px-4 py-2 rounded-lg"
                     >
                       Logout
                     </button>
 
-                    <Link to="/myprofile">
+                    <div className="group relative w-fit">
                       <img
-                        className="w-[60px] h-[60px] object-cover rounded-2xl"
+                        className="w-[60px] h-[60px] object-cover  rounded-2xl"
                         src={user.photoURL}
                         alt="User Profile"
                       />
-                    </Link>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block px-2 py-1 bg-gray-800 text-white text-sm rounded-md whitespace-nowrap z-10">
+                        {user.displayName}
+                      </div>
+                    </div>
                   </>
                 )}
               </div>

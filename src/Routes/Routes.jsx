@@ -8,6 +8,7 @@ import Browselisting from "../Pages/Browselisting";
 import Mylisting from "../Pages/Mylisting";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
+import Privateroute from "../PrivateRoute/Privateroute";
 
 export const router = createBrowserRouter([
   {
@@ -20,29 +21,29 @@ export const router = createBrowserRouter([
         Component: Home,
         hydrateFallbackElement: <Loading></Loading>,
       },
-      //   {
-      //     path: "addtofindroommate",
-      //     element: (
-      //       <Privateroute>
-      //         <Addtofindroommate></Addtofindroommate>
-      //       </Privateroute>
-      //     ),
-      //     hydrateFallbackElement: <Loading></Loading>,
-      //   },
+      {
+        path: "addtofindroommate",
+        element: (
+          <Privateroute>
+            <Addtofindroommate></Addtofindroommate>
+          </Privateroute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
       {
         path: "browselisting",
         element: <Browselisting></Browselisting>,
         hydrateFallbackElement: <Loading></Loading>,
       },
-      //   {
-      //     path: "mylisting",
-      //     element: (
-      //       <Privateroute>
-      //         <Mylisting></Mylisting>
-      //       </Privateroute>
-      //     ),
-      //     hydrateFallbackElement: <Loading></Loading>,
-      //   },
+      {
+        path: "mylisting",
+        element: (
+          <Privateroute>
+            <Mylisting></Mylisting>
+          </Privateroute>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
       {
         path: "login",
         Component: Login,
