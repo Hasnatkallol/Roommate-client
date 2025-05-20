@@ -1,9 +1,14 @@
 import React, { use } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
+import { FaMoon } from "react-icons/fa";
+import { CiSun } from "react-icons/ci";
 
 const Navbar = () => {
-  const { user, logOut } = use(FirebaseAuthContext);
+  const { user, logOut, theme, setTheme } = use(FirebaseAuthContext);
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
   const navigate = useNavigate();
   const handleLogout = () => {
     logOut()
@@ -144,6 +149,13 @@ const Navbar = () => {
                     </>
                   )}
                 </div>
+                <button onClick={toggleTheme} className="my-2">
+                  {theme === "light" ? (
+                    <FaMoon size={30} />
+                  ) : (
+                    <CiSun size={30} />
+                  )}
+                </button>
               </ul>
             </div>
           </div>
@@ -201,7 +213,7 @@ const Navbar = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
-                          : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
+                          : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg border-none"
                       }
                     >
                       Login
@@ -240,6 +252,10 @@ const Navbar = () => {
                   </>
                 )}
               </div>
+
+              <button onClick={toggleTheme} className="my-2 mx-2">
+                {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
+              </button>
             </ul>
           </div>
         </div>

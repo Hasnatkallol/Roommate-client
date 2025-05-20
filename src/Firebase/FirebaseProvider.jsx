@@ -46,6 +46,11 @@ const FirebaseProvider = ({ children }) => {
     };
   }, []);
 
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   const userInfo = {
     createUser,
     logIn,
@@ -55,6 +60,8 @@ const FirebaseProvider = ({ children }) => {
     signInWithGoogle,
     loading,
     setLoading,
+    theme,
+    setTheme,
   };
 
   return <FirebaseAuthContext value={userInfo}>{children}</FirebaseAuthContext>;

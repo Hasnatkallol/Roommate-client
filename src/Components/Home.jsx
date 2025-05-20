@@ -1,7 +1,6 @@
 import React from "react";
 import Slider from "./Slider";
 import Roommatepost from "./Roommatepost";
-import Question from "./Question";
 import Howworks from "./Howworks";
 import Hero from "./Hero";
 

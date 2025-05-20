@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 
 const Detailspage = () => {
   const {
+    _id,
     title,
     location,
     rent,
@@ -22,6 +23,13 @@ const Detailspage = () => {
     const newLiked = !liked;
     setLiked(newLiked);
     setLikeCount((count) => (newLiked ? count + 1 : count - 1));
+
+    // fetch(`http://localhost:4000/increment/${_id}`, {
+    //   method: "POST",
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log("Incremented:", data))
+    //   .catch((err) => console.error(err));
   };
 
   return (
@@ -60,7 +68,8 @@ const Detailspage = () => {
           <strong>Availability:</strong> {availability}
         </p>
         <p>
-          <strong>Contact:</strong> {contact}
+          <strong>Contact:</strong>
+          {liked ? contact : ""}
         </p>
         <p>
           <strong>Email:</strong> {email}
