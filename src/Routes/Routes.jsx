@@ -10,6 +10,7 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Privateroute from "../PrivateRoute/Privateroute";
 import Detailspage from "../Pages/Detailspage";
+import Update from "../Pages/Update";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,12 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:4000/roommate/${params.id}`),
         Component: Detailspage,
+      },
+      {
+        path: "update/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/allroommate/${params.id}`),
+        Component: Update,
       },
     ],
   },

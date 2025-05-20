@@ -86,7 +86,7 @@ const Mylisting = () => {
                 <td className="px-6 py-4">${roommate.rent}</td>
                 <td className="px-6 py-4">{roommate.availability}</td>
                 <td className="px-6 py-4 text-center space-x-2">
-                  <Link to={`/update-roommate/${roommate._id}`}>
+                  <Link to={`/update/${roommate._id}`}>
                     <button className="bg-gradient-to-r from-[#d4e9ff] via-[#eae6fb] to-[#f5ebff] text-black font-semibold px-4 py-1 rounded-xl shadow-sm hover:scale-105 transition text-xs">
                       Update
                     </button>
