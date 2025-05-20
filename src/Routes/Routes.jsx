@@ -9,6 +9,7 @@ import Mylisting from "../Pages/Mylisting";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Privateroute from "../PrivateRoute/Privateroute";
+import Detailspage from "../Pages/Detailspage";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,12 @@ export const router = createBrowserRouter([
         path: "signup",
         Component: Signup,
         hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "roommate/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/roommate/${params.id}`),
+        Component: Detailspage,
       },
     ],
   },
