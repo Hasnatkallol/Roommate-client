@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 const Errorpage = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
       <div className="w-11/12 mx-auto  mt-40 ">
         <div className="flex flex-col justify-center items-center">
           <div>

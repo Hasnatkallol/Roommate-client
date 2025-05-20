@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import Roommate from "./Roommate";
 
@@ -16,10 +16,10 @@ const Roommatepost = () => {
   return (
     <div>
       <div>
-        <h1 className="text-xl md:text-2xl lg:text-3xl text-black font-bold text-center">
+        <h2 className="text-3xl text-[#4fa3d1] md:text-4xl font-bold  text-center">
           Featured Roommate Listings
-        </h1>
-        <p className="text-gray-400 text-center mx-auto w-[80%] my-3">
+        </h2>
+        <p className="text-gray-400 text-center mx-auto w-[80%] mt-3 mb-8">
           Discover handpicked roommate posts currently marked as Available. Each
           listing highlights essential details like location, budget, lifestyle
           preferences, and more — helping you find the perfect match faster.

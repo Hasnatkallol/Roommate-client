@@ -15,14 +15,14 @@ const Navbar = () => {
       });
   };
   return (
-    <div className="shadow-md">
-      <div className="w-11/12 mx-auto ">
-        <div className="flex justify-between p-0 bg-base-100 ">
+    <div className="shadow-md bg-gradient-to-r from-blue-600 to-purple-600">
+      <div className="w-11/12 mx-auto pt-2">
+        <div className="flex justify-between p-0 bg-gradient-to-r from-blue-600 to-purple-600">
           <div className="navbar-start flex justify-between  w-full">
             <a className="flex justify-center items-center">
               <img
-                className="w-16 h-16 lg:w-25 lg:h-25 md:w-15 md:h-15"
-                src={"/image.png"}
+                className="w-16 h-16 lg:w-15 lg:h-15 md:w-15 md:h-15 my-2 rounded-full"
+                src={"/image copy.png"}
                 alt=""
               />
               <h1 className="font-bold text-3xl"></h1>
@@ -56,12 +56,12 @@ const Navbar = () => {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+                      ? "text-[#4fa3d1]  underline underline-offset-4 font-bold"
                       : ""
                   }
                   to={"/"}
                 >
-                  <li className="text-2xl mr-5">Home</li>
+                  <li className="text-2xl mr-5">Home </li>
                 </NavLink>
 
                 <NavLink
@@ -152,7 +152,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+                    ? "text-white  underline underline-offset-4 font-bold"
                     : ""
                 }
                 to={"/"}
@@ -163,7 +163,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+                    ? "text-white underline underline-offset-4 font-bold"
                     : ""
                 }
                 to={"/addtofindroommate"}
@@ -174,7 +174,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+                    ? "text-white underline underline-offset-4 font-bold"
                     : ""
                 }
                 to={"/browselisting"}
@@ -185,7 +185,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+                    ? "text-white underline underline-offset-4 font-bold"
                     : ""
                 }
                 to={"/mylisting"}
@@ -200,7 +200,7 @@ const Navbar = () => {
                       to="/login"
                       className={({ isActive }) =>
                         isActive
-                          ? "text-2xl btn bg-[#883b7a] text-white px-4 py-2 rounded-lg"
+                          ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
                           : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
                       }
                     >
@@ -211,7 +211,7 @@ const Navbar = () => {
                       to="/signup"
                       className={({ isActive }) =>
                         isActive
-                          ? "text-2xl btn bg-[#883b7a] text-white px-4 py-2 rounded-lg"
+                          ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
                           : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
                       }
                     >

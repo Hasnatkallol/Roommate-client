@@ -1,13 +1,17 @@
 import React from "react";
 import Slider from "./Slider";
 import Roommatepost from "./Roommatepost";
+import Question from "./Question";
+import Howworks from "./Howworks";
+import Hero from "./Hero";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Hero></Hero>
       <Slider></Slider>
       <Roommatepost></Roommatepost>
+      <Howworks></Howworks>
     </div>
   );
 };
