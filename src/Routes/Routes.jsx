@@ -61,12 +61,14 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:4000/roommate/${params.id}`),
         Component: Detailspage,
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "update/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:4000/allroommate/${params.id}`),
         Component: Update,
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },

@@ -16,15 +16,23 @@ const Detailspage = () => {
   } = useLoaderData();
 
   const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
   const handleLike = () => {
-    setLiked((prev) => !prev);
+    const newLiked = !liked;
+    setLiked(newLiked);
+    setLikeCount((count) => (newLiked ? count + 1 : count - 1));
   };
 
   return (
     <div className="w-11/12 mx-auto my-10 p-6 bg-white rounded-lg shadow-md max-w-3xl">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold">{title}</h2>
+        <h3>
+          {" "}
+          <span className="text-[#f80505f3] font-bold">{likeCount}</span> people
+          interested in
+        </h3>
         <button
           onClick={handleLike}
           className={`px-4 py-2 rounded-full text-sm font-medium transition ${
