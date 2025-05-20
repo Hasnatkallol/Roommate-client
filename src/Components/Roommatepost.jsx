@@ -3,7 +3,7 @@ import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import Roommate from "./Roommate";
 
 const Roommatepost = () => {
-  const { user } = use(FirebaseAuthContext);
+  // const { user } = use(FirebaseAuthContext);
 
   const [roommates, setRoommates] = useState([]);
 
@@ -12,13 +12,6 @@ const Roommatepost = () => {
       .then((res) => res.json())
       .then((data) => setRoommates(data));
   }, []);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/allroommate")
-  //     .then((res) => res.json())
-  //     .then((data) => setRoommates(data));
-  // }, []);
-  // console.log(roommates);
 
   return (
     <div>
