@@ -1,12 +1,29 @@
-# React + Vite
+# RoomieMatch Frontend - Find Your Perfect Roommate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🌐 **Live Site**: [https://roomiematch.example.com](https://roomiematch.example.com)
 
-Currently, two official plugins are available:
+RoomieMatch is a modern web application that helps individuals find compatible roommates based on lifestyle preferences, budget, and interests. This frontend is built with React and integrates Firebase for user authentication and protected routes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 **Roommate Filtering**: Search by location, budget, lifestyle preferences, and interests.
+- 🧑‍💼 **User Profiles**: Users can create and manage personal profiles.
+- 🔐 **Firebase Auth Integration**: Secure login, registration, and auth state management.
+- 🚪 **Private Routes**: Only authenticated users can access certain pages.
+- 🎨 **Responsive UI**: Styled with Tailwind CSS, DaisyUI, React Tooltip, and React Typewriter for a clean and modern feel.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **React**
+- **React Router**
+- **Firebase Authentication**
+- **Tailwind CSS**, **DaisyUI**
+- **React Tooltip**, **React Typewriter**
+
+## 📦 Getting Started
+
+```bash
+cd client
+npm install
+npm start
+```
