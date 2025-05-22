@@ -1,8 +1,8 @@
-# RoomieMatch Frontend - Find Your Perfect Roommate
+# Roommate find Website - Find Your Perfect Roommate
 
 🌐 **Live Site**: [https://poetic-hamster-cbe061.netlify.app/](https://poetic-hamster-cbe061.netlify.app/)
 
-RoomieMatch is a modern web application that helps individuals find compatible roommates based on lifestyle preferences, budget, and interests. This frontend is built with React and integrates Firebase for user authentication and protected routes.
+Roommate find is a modern web application that helps individuals find compatible roommates based on lifestyle preferences, budget, and interests. This frontend is built with React and integrates Firebase for user authentication and protected routes.
 
 ## 🚀 Features
 
