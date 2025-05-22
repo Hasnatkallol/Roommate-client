@@ -1,9 +1,14 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 
 const AddToFindRoommate = () => {
+  useEffect(() => {
+    document.title = "Add Roommate";
+  }, []);
+
   const { user } = use(FirebaseAuthContext);
+
   const handleAddListing = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,7 +16,7 @@ const AddToFindRoommate = () => {
     const newListing = Object.fromEntries(formData.entries());
     console.log(newListing);
 
-    fetch("http://localhost:4000/roommate", {
+    fetch("https://room-server.vercel.app/roommate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +28,7 @@ const AddToFindRoommate = () => {
         if (data.insertedId) {
           {
             Swal.fire({
-              title: "successfully added user",
+              title: "successfully added ",
               icon: "success",
               draggable: true,
             });

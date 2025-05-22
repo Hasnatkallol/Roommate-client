@@ -13,6 +13,8 @@ import { auth } from "./firebase.init";
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [roommates, setRoommates] = useState([]);
+  const [search, setSearch] = useState("");
   const provider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
@@ -62,6 +64,10 @@ const FirebaseProvider = ({ children }) => {
     setLoading,
     theme,
     setTheme,
+    roommates,
+    setRoommates,
+    search,
+    setSearch,
   };
 
   return <FirebaseAuthContext value={userInfo}>{children}</FirebaseAuthContext>;

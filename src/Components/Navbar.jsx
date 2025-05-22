@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { FaMoon } from "react-icons/fa";
 import { CiSun } from "react-icons/ci";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logOut, theme, setTheme } = use(FirebaseAuthContext);
@@ -66,7 +67,7 @@ const Navbar = () => {
                   }
                   to={"/"}
                 >
-                  <li className="text-2xl mr-5">Home </li>
+                  <li className="text-2xl mr-5">Home to</li>
                 </NavLink>
 
                 <NavLink
@@ -102,50 +103,51 @@ const Navbar = () => {
                   <li className="text-2xl mr-5">My Listing</li>
                 </NavLink>
 
-                <div>
-                  {user ? (
+                <div className="flex items-center space-x-4">
+                  {!user ? (
                     <>
                       <NavLink
+                        to="/login"
                         className={({ isActive }) =>
                           isActive
-                            ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                            : ""
+                            ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
+                            : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg border-none"
                         }
-                        to="/login"
                       >
-                        <li className="text-2xl mr-5">Logout</li>
+                        Login
                       </NavLink>
 
-                      <Link to={"/myprofile"}>
-                        <img
-                          className="w-15 h-15  rounded-2xl"
-                          src={`${user ? user.photoURL : ""}`}
-                          alt=""
-                        />
-                      </Link>
+                      <NavLink
+                        to="/signup"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
+                            : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
+                        }
+                      >
+                        Signup
+                      </NavLink>
                     </>
                   ) : (
                     <>
-                      <NavLink
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                            : ""
-                        }
-                        to="/login"
+                      <button
+                        onClick={handleLogout}
+                        className="text-2xl btn bg-red-500 text-white px-4 py-2 rounded-lg"
                       >
-                        <li className="text-2xl mr-5">Login</li>
-                      </NavLink>
-                      <NavLink
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                            : ""
-                        }
-                        to="/register"
+                        Logout
+                      </button>
+
+                      <a
+                        data-tooltip-id="my-tooltip"
+                        data-tooltip-content={user.displayName}
                       >
-                        <li className="text-2xl mr-5">Register</li>
-                      </NavLink>
+                        <img
+                          className="w-[60px] h-[60px] object-cover  rounded-2xl"
+                          src={user.photoURL}
+                          alt="User Profile"
+                        />
+                      </a>
+                      <Tooltip id="my-tooltip" />
                     </>
                   )}
                 </div>
@@ -159,7 +161,7 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <div className="navbar-center hidden md:flex">
+          <div className="navbar-center hidden md:flex  ">
             <ul className="menu menu-horizontal px-1 items-center">
               <NavLink
                 className={({ isActive }) =>
@@ -239,16 +241,17 @@ const Navbar = () => {
                       Logout
                     </button>
 
-                    <div className="group relative w-fit">
+                    <a
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content={user.displayName}
+                    >
                       <img
                         className="w-[60px] h-[60px] object-cover  rounded-2xl"
                         src={user.photoURL}
                         alt="User Profile"
                       />
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block px-2 py-1 bg-gray-800 text-white text-sm rounded-md whitespace-nowrap z-10">
-                        {user.displayName}
-                      </div>
-                    </div>
+                    </a>
+                    <Tooltip id="my-tooltip" />
                   </>
                 )}
               </div>

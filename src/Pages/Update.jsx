@@ -14,7 +14,7 @@ const Update = () => {
     const newListing = Object.fromEntries(formData.entries());
     console.log(newListing);
 
-    fetch(`http://localhost:4000/allroommate/${data._id}`, {
+    fetch(`https://room-server.vercel.app/allroommate/${data._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -31,12 +31,18 @@ const Update = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
         }
       });
   };
   return (
     <div>
-      <h1>Don eUpdate {data.title}</h1>
       <div>
         <div className="p-24">
           <div className="p-12 text-center space-y-4">

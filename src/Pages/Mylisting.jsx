@@ -5,13 +5,17 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 const Mylisting = () => {
+  useEffect(() => {
+    document.title = "My Listing";
+  }, []);
+
   const { user } = use(FirebaseAuthContext);
   const [roommates, setRoommates] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
       const email = user.email;
-      fetch(`http://localhost:4000/allroommate?email=${email}`)
+      fetch(`https://room-server.vercel.app/allroommate?email=${email}`)
         .then((res) => res.json())
         .then((data) => setRoommates(data))
         .catch((err) => console.error("Failed to fetch listings:", err));
@@ -32,7 +36,7 @@ const Mylisting = () => {
     }).then((result) => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/allroommate/${_id}`, {
+        fetch(`https://room-server.vercel.app/allroommate/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -62,7 +66,7 @@ const Mylisting = () => {
         them.
       </p>
 
-      <div className="overflow-x-auto rounded-lg shadow-lg">
+      <div className="overflow-x-auto rounded-lg shadow-lg mb-5">
         <table className="min-w-full text-sm text-left text-gray-700 bg-white">
           <thead className="text-xs uppercase bg-gradient-to-r from-blue-600 to-purple-600 text-white">
             <tr>

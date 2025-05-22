@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 const Browselisting = () => {
+  useEffect(() => {
+    document.title = "Browse Listing";
+  }, []);
+
   const [roommates, setRoommates] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/allroommate")
+    fetch("https://room-server.vercel.app/allroommate")
       .then((res) => res.json())
       .then((data) => setRoommates(data))
       .catch((err) => console.error("Failed to fetch listings:", err));

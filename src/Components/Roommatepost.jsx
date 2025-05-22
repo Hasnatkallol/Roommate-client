@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect } from "react";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import Roommate from "./Roommate";
 
 const Roommatepost = () => {
-  // const { user } = use(FirebaseAuthContext);
-
-  const [roommates, setRoommates] = useState([]);
+  const { roommates, setRoommates } = use(FirebaseAuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:4000/roommate")
+    fetch(`https://room-server.vercel.app/roommate`)
       .then((res) => res.json())
       .then((data) => setRoommates(data));
-  }, []);
+  }, [setRoommates]);
 
   return (
     <div>
@@ -26,9 +24,14 @@ const Roommatepost = () => {
           Click "See more" to view complete profiles and start connecting.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 border-1 w-11/12 mx-auto">
+      <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5  w-11/12 mx-auto">
         {roommates.map((roommate) => (
-          <Roommate roommate={roommate} key={roommate._id}></Roommate>
+          <Roommate
+            roommate={roommate}
+            roommates={roommates}
+            setRoommates={setRoommates}
+            key={roommate._id}
+          ></Roommate>
         ))}
       </div>
     </div>

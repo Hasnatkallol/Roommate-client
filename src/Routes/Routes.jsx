@@ -9,8 +9,9 @@ import Mylisting from "../Pages/Mylisting";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Privateroute from "../PrivateRoute/Privateroute";
-import Detailspage from "../Pages/Detailspage";
+
 import Update from "../Pages/Update";
+import Detailspage from "../Pages/Detailspage";
 
 export const router = createBrowserRouter([
   {
@@ -56,17 +57,24 @@ export const router = createBrowserRouter([
         Component: Signup,
         hydrateFallbackElement: <Loading></Loading>,
       },
+
       {
         path: "roommate/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/roommate/${params.id}`),
-        Component: Detailspage,
+          fetch(`https://room-server.vercel.app/roommate/${params.id}`),
+        // Component: Detailspage,
+        element: (
+          <Privateroute>
+            <Detailspage></Detailspage>
+          </Privateroute>
+        ),
         hydrateFallbackElement: <Loading></Loading>,
       },
+
       {
         path: "update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/allroommate/${params.id}`),
+          fetch(`https://room-server.vercel.app/allroommate/${params.id}`),
         Component: Update,
         hydrateFallbackElement: <Loading></Loading>,
       },

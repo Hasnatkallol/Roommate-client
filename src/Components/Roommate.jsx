@@ -1,27 +1,42 @@
 import React from "react";
+import { FaMoneyBillWaveAlt } from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";
+import { MdOutlineEventAvailable } from "react-icons/md";
 import { Link } from "react-router";
 
 const Roommate = ({ roommate }) => {
   return (
     <div>
-      <div className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+      <div className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800  h-auto md:h-[400px] lg:h-[350px]">
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-semibold text-center tracking-wide">
+            <h2 className="text-3xl font-semibold text-[#4fa3d1] tracking-wide">
               {roommate.title}
             </h2>
-            <h2 className="text-2xl font-semibold text-center tracking-wide">
-              Location: {roommate.location}
+            <h2 className="text-2xl items-center ml-2 flex font-semibold  tracking-wide  gap-2">
+              <IoLocationOutline
+                className="text-blue-800 font-bold"
+                size={20}
+              />{" "}
+              {roommate.location}
             </h2>
-            <h2 className="text-3xl text-[#7e7ed5] font-semibold text-center tracking-wide">
-              Rent: {roommate.rent}
+            <h2 className="text-2xl items-center ml-2 flex font-semibold  tracking-wide  gap-2">
+              <FaMoneyBillWaveAlt
+                size={20}
+                className="text-blue-800 font-bold"
+              />{" "}
+              {roommate.rent}
             </h2>
-            <h2 className="text-3xl text-[#7e7ed5] font-semibold text-center tracking-wide">
-              Rent: {roommate.availability}
+            <h2 className="text-2xl items-center  ml-2 flex font-semibold  tracking-wide  gap-2">
+              <MdOutlineEventAvailable
+                size={20}
+                className="text-blue-800 font-bold"
+              />{" "}
+              {roommate.availability}
             </h2>
           </div>
           <Link
-            className="flex items-centers justify-center"
+            className="flex items-centers "
             to={`/roommate/${roommate._id}`}
           >
             {" "}
