@@ -67,7 +67,7 @@ const Navbar = () => {
                   }
                   to={"/"}
                 >
-                  <li className="text-2xl mr-5">Home to</li>
+                  <li className="text-2xl mr-5">Home </li>
                 </NavLink>
 
                 <NavLink
