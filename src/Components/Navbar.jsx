@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <div className="shadow-md bg-gradient-to-r from-blue-600 to-purple-600">
       <div className="w-11/12 mx-auto pt-2">
-        <div className="flex justify-between p-0 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="flex justify-between  p-0 bg-gradient-to-r from-blue-600 to-purple-600">
           <div className="navbar-start flex justify-between  w-full">
             <a className="flex justify-center items-center">
               <img
@@ -57,7 +57,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content right-[1px] bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content right-[1px] bg-base-300 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 <NavLink
                   className={({ isActive }) =>
@@ -103,7 +103,7 @@ const Navbar = () => {
                   <li className="text-2xl mr-5">My Listing</li>
                 </NavLink>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex flex-col lg:items-center space-x-4">
                   {!user ? (
                     <>
                       <NavLink
