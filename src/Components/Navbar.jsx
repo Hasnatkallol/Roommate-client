@@ -33,6 +33,9 @@ const Navbar = () => {
               />
               <h1 className="font-bold text-3xl"></h1>
             </a>
+            <button onClick={toggleTheme} className="my-2 lg:hidden">
+              {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
+            </button>
             <div className="dropdown ">
               <div
                 tabIndex={0}
@@ -67,7 +70,7 @@ const Navbar = () => {
                   }
                   to={"/"}
                 >
-                  <li className="text-2xl mr-5">Home </li>
+                  <li className="text-x lg:text-2xl mr-5">Home </li>
                 </NavLink>
 
                 <NavLink
@@ -78,7 +81,9 @@ const Navbar = () => {
                   }
                   to={"/addtofindroommate"}
                 >
-                  <li className="text-2xl mr-5">Add to Find Roommate</li>
+                  <li className="text-x lg:text-2xl mr-5">
+                    Add to Find Roommate
+                  </li>
                 </NavLink>
 
                 <NavLink
@@ -89,7 +94,7 @@ const Navbar = () => {
                   }
                   to={"/browselisting"}
                 >
-                  <li className="text-2xl mr-5">Browse Listing</li>
+                  <li className="text-x lg:text-2xl mr-5">Browse Listing</li>
                 </NavLink>
 
                 <NavLink
@@ -100,18 +105,18 @@ const Navbar = () => {
                   }
                   to={"/mylisting"}
                 >
-                  <li className="text-2xl mr-5">My Listing</li>
+                  <li className="text-x lg:text-2xl mr-5">My Listing</li>
                 </NavLink>
 
-                <div className="flex flex-col lg:items-center space-x-4">
+                <div className="flex flex-col lg:items-center space-y-2 lg:space-y-0 space-x-4">
                   {!user ? (
                     <>
                       <NavLink
                         to="/login"
                         className={({ isActive }) =>
                           isActive
-                            ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
-                            : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg border-none"
+                            ? "text-x lg:text-2xl btn bg-[white] text-black flex justify-center items-center px-4 lg:px-4 py-2 rounded-lg "
+                            : "text-x lg:text-2xl btn bg-gray-500 text-white px-4 lg:px-4 py-2 rounded-lg border-none"
                         }
                       >
                         Login
@@ -121,8 +126,8 @@ const Navbar = () => {
                         to="/signup"
                         className={({ isActive }) =>
                           isActive
-                            ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
-                            : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
+                            ? "text-x lg:text-2xl btn bg-[white] text-black flex justify-center items-center px-2 lg:px-4 py-2 rounded-lg"
+                            : "text-x lg:text-2xl btn bg-gray-500 text-white px-2 lg:px-4 py-2 rounded-lg border-none"
                         }
                       >
                         Signup
@@ -151,7 +156,7 @@ const Navbar = () => {
                     </>
                   )}
                 </div>
-                <button onClick={toggleTheme} className="my-2">
+                <button onClick={toggleTheme} className="my-2 hidden lg:flex">
                   {theme === "light" ? (
                     <FaMoon size={30} />
                   ) : (
@@ -162,6 +167,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar-center hidden md:flex  ">
+            {/* For large device */}
             <ul className="menu menu-horizontal px-1 items-center">
               <NavLink
                 className={({ isActive }) =>
@@ -171,7 +177,7 @@ const Navbar = () => {
                 }
                 to={"/"}
               >
-                <li className="text-2xl mr-5">Home</li>
+                <li className="text-2xl mr-5">Home </li>
               </NavLink>
 
               <NavLink
