@@ -9,9 +9,11 @@ const Mainlayout = () => {
       <header>
         <Navbar></Navbar>
       </header>
-      <main>
-        <Outlet></Outlet>
-      </main>
+      <div>
+        <main>
+          <Outlet></Outlet>
+        </main>
+      </div>
       <Footer></Footer>
     </div>
   );

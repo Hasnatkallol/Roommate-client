@@ -94,8 +94,9 @@ const Detailspage = () => {
           <strong>Availability:</strong> {availability}
         </p>
         <p>
-          <strong>Contact:</strong>
-          {liked ? contact : ""}
+          <strong>Contact: </strong>
+
+          {liked ? contact : user.email === email ? contact : ""}
         </p>
         <p>
           <strong>Email:</strong> {email}
