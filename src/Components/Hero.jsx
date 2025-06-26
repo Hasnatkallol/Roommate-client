@@ -53,7 +53,7 @@ const Hero = () => {
               <h1 className="font-medium text-2xl text-black">
                 Need a roommate ?
               </h1>
-              <Link className="" to={"/addtofindroommate"}>
+              <Link className="" to={"/dashboard/addtofindroommate"}>
                 {" "}
                 <button className="bg-gradient-to-r flex items-center gap-2 justify-center  from-[#e0f2ff] via-[#e9e7fc] to-[#f1e7ff] text-black font-semibold py-3 my-4 px-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:opacity-95">
                   List your room <FaArrowRight />

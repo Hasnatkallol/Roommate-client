@@ -39,9 +39,9 @@ const AddToFindRoommate = () => {
   };
 
   return (
-    <div className="p-24">
-      <div className="p-12 text-center space-y-4">
-        <h1 className="text-6xl font-bold">Add a Roommate Listing</h1>
+    <div className="p-2 lg:px-24">
+      <div className="p-12 w-full text-center  space-y-4">
+        <h1 className="text-2xl lg:text-6xl w-full  font-bold">Add a Roommate Listing</h1>
         <p className="text-lg">
           Connect with others looking for shared living spaces. Add your listing
           to find the perfect match for your lifestyle and preferences. Roommate

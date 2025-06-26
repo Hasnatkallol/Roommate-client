@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar  z-50 fixed bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4  shadow-md">
+    <div className="navbar py-3 z-50 fixed bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4  shadow-md">
       {/* Left: Logo */}
       <div className="flex-1">
         <Link to="/" className="flex items-center gap-2">
