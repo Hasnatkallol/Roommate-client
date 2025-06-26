@@ -3,270 +3,200 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { FaMoon } from "react-icons/fa";
 import { CiSun } from "react-icons/ci";
-import { Tooltip } from "react-tooltip";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut, theme, setTheme } = use(FirebaseAuthContext);
+  const navigate = useNavigate();
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
-  const navigate = useNavigate();
+
   const handleLogout = () => {
     logOut()
       .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged out successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.error(error));
   };
+
   return (
-    <div className="shadow-md bg-gradient-to-r from-blue-600 to-purple-600">
-      <div className="w-11/12 mx-auto pt-2">
-        <div className="flex justify-between  p-0 bg-gradient-to-r from-blue-600 to-purple-600">
-          <div className="navbar-start flex justify-between  w-full">
-            <a className="flex justify-center items-center">
-              <img
-                className="w-16 h-16 lg:w-15 lg:h-15 md:w-15 md:h-15 my-2 rounded-full"
-                src={"/image copy.png"}
-                alt=""
-              />
-              <h1 className="font-bold text-3xl"></h1>
-            </a>
-            <button onClick={toggleTheme} className="my-2 lg:hidden">
-              {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
-            </button>
-            <div className="dropdown ">
-              <div
-                tabIndex={0}
-                role="button"
-                className=" btn-ghost  mr-2 md:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {" "}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />{" "}
-                </svg>
+    <div className="navbar  z-50 fixed bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4  shadow-md">
+      {/* Left: Logo */}
+      <div className="flex-1">
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src="/image copy.png"
+            alt="Logo"
+            className="w-12 h-12 rounded-full"
+          />
+          <span className="text-xl font-bold">Roommate Finder</span>
+        </Link>
+      </div>
+
+      {/* Right: One row for nav links, theme toggle, and auth */}
+      <div className="flex items-center gap-3">
+        {/* Desktop Nav Links */}
+        <div className="hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-2">
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#4fa3d1]  underline underline-offset-4 font-bold"
+                  : ""
+              }
+              to={"/"}
+            >
+              <li className="text-x lg:text-2xl mr-5">Home </li>
+            </NavLink>
+          <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#4fa3d1]  underline underline-offset-4 font-bold"
+                  : ""
+              }
+              to={"/browselisting"}
+            >
+              <li className="text-x lg:text-2xl mr-5">Browse Listing </li>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#4fa3d1]  underline underline-offset-4 font-bold"
+                  : ""
+              }
+              to={"/contactus"}
+            >
+              <li className="text-x lg:text-2xl mr-5">Contact Us </li>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#4fa3d1]  underline underline-offset-4 font-bold"
+                  : ""
+              }
+              to={"/aboutus"}
+            >
+              <li className="text-x lg:text-2xl mr-5">About Us </li>
+            </NavLink>
+          </ul>
+        </div>
+
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="btn btn-sm btn-circle btn-ghost text-xl"
+        >
+          {theme === "light" ? <FaMoon /> : <CiSun />}
+        </button>
+
+        {/* Auth: Sign In / Avatar */}
+        {!user ? (
+          <Link to="/login" className="btn btn-sm btn-secondary">
+            Sign In
+          </Link>
+        ) : (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full ring ring-white ring-offset-base-100 ring-offset-2">
+                <img src={user.photoURL} alt="Profile" />
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content right-[1px] bg-base-300 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#4fa3d1]  underline underline-offset-4 font-bold"
-                      : ""
-                  }
-                  to={"/"}
-                >
-                  <li className="text-x lg:text-2xl mr-5">Home </li>
-                </NavLink>
-
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                      : ""
-                  }
-                  to={"/addtofindroommate"}
-                >
-                  <li className="text-x lg:text-2xl mr-5">
-                    Add to Find Roommate
-                  </li>
-                </NavLink>
-
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                      : ""
-                  }
-                  to={"/browselisting"}
-                >
-                  <li className="text-x lg:text-2xl mr-5">Browse Listing</li>
-                </NavLink>
-
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
-                      : ""
-                  }
-                  to={"/mylisting"}
-                >
-                  <li className="text-x lg:text-2xl mr-5">My Listing</li>
-                </NavLink>
-
-                <div className="flex flex-col lg:items-center space-y-2 lg:space-y-0 space-x-4">
-                  {!user ? (
-                    <>
-                      <NavLink
-                        to="/login"
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-x lg:text-2xl btn bg-[white] text-black flex justify-center items-center px-4 lg:px-4 py-2 rounded-lg "
-                            : "text-x lg:text-2xl btn bg-gray-500 text-white px-4 lg:px-4 py-2 rounded-lg border-none"
-                        }
-                      >
-                        Login
-                      </NavLink>
-
-                      <NavLink
-                        to="/signup"
-                        className={({ isActive }) =>
-                          isActive
-                            ? "text-x lg:text-2xl btn bg-[white] text-black flex justify-center items-center px-2 lg:px-4 py-2 rounded-lg"
-                            : "text-x lg:text-2xl btn bg-gray-500 text-white px-2 lg:px-4 py-2 rounded-lg border-none"
-                        }
-                      >
-                        Signup
-                      </NavLink>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={handleLogout}
-                        className="text-2xl btn bg-red-500 text-white px-4 py-2 rounded-lg"
-                      >
-                        Logout
-                      </button>
-
-                      <a
-                        data-tooltip-id="my-tooltip"
-                        data-tooltip-content={user.displayName}
-                      >
-                        <img
-                          className="w-[60px] h-[60px] object-cover  rounded-2xl"
-                          src={user.photoURL}
-                          alt="User Profile"
-                        />
-                      </a>
-                      <Tooltip id="my-tooltip" />
-                    </>
-                  )}
-                </div>
-                <button onClick={toggleTheme} className="my-2 hidden lg:flex">
-                  {theme === "light" ? (
-                    <FaMoon size={30} />
-                  ) : (
-                    <CiSun size={30} />
-                  )}
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 text-black rounded-box w-52"
+            >
+              <li className="text-center font-bold">{user.displayName}</li>
+              <li>
+                <Link to="/dashboard/addtofindroommate">Dashboard</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout} className="text-red-600">
+                  Logout
                 </button>
-              </ul>
-            </div>
-          </div>
-          <div className="navbar-center hidden md:flex  ">
-            {/* For large device */}
-            <ul className="menu menu-horizontal px-1 items-center">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white  underline underline-offset-4 font-bold"
-                    : ""
-                }
-                to={"/"}
-              >
-                <li className="text-2xl mr-5">Home </li>
-              </NavLink>
-
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white underline underline-offset-4 font-bold"
-                    : ""
-                }
-                to={"/addtofindroommate"}
-              >
-                <li className="text-2xl mr-5">Add to Find Roommate</li>
-              </NavLink>
-
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white underline underline-offset-4 font-bold"
-                    : ""
-                }
-                to={"/browselisting"}
-              >
-                <li className="text-2xl mr-5">Browse Listing</li>
-              </NavLink>
-
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white underline underline-offset-4 font-bold"
-                    : ""
-                }
-                to={"/mylisting"}
-              >
-                <li className="text-2xl mr-5">My Listing</li>
-              </NavLink>
-
-              <div className="flex items-center space-x-4">
-                {!user ? (
-                  <>
-                    <NavLink
-                      to="/login"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
-                          : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg border-none"
-                      }
-                    >
-                      Login
-                    </NavLink>
-
-                    <NavLink
-                      to="/signup"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-2xl btn bg-[white] text-black flex justify-center items-center px-4 py-2 rounded-lg"
-                          : "text-2xl btn bg-gray-500 text-white px-4 py-2 rounded-lg"
-                      }
-                    >
-                      Signup
-                    </NavLink>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      onClick={handleLogout}
-                      className="text-2xl btn bg-red-500 text-white px-4 py-2 rounded-lg"
-                    >
-                      Logout
-                    </button>
-
-                    <a
-                      data-tooltip-id="my-tooltip"
-                      data-tooltip-content={user.displayName}
-                    >
-                      <img
-                        className="w-[60px] h-[60px] object-cover  rounded-2xl"
-                        src={user.photoURL}
-                        alt="User Profile"
-                      />
-                    </a>
-                    <Tooltip id="my-tooltip" />
-                  </>
-                )}
-              </div>
-
-              <button onClick={toggleTheme} className="my-2 mx-2">
-                {theme === "light" ? <FaMoon size={30} /> : <CiSun size={30} />}
-              </button>
+              </li>
             </ul>
           </div>
+        )}
+
+        {/* Mobile Dropdown Nav */}
+        <div className="dropdown dropdown-end lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </label>
+        <ul
+  tabIndex={0}
+  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+>
+  <li>
+    <NavLink
+      to="/"
+      className={({ isActive }) =>
+        isActive
+          ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+          : "text-black"
+      }
+    >
+      Home
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/browselisting"
+      className={({ isActive }) =>
+        isActive
+          ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+          : "text-black"
+      }
+    >
+      Browse Listing
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/contactus"
+      className={({ isActive }) =>
+        isActive
+          ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+          : "text-black"
+      }
+    >
+      Contact Us
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/aboutus"
+      className={({ isActive }) =>
+        isActive
+          ? "text-[#4fa3d1] underline underline-offset-4 font-bold"
+          : "text-black"
+      }
+    >
+      About Us
+    </NavLink>
+  </li>
+</ul>
+
         </div>
       </div>
     </div>

@@ -140,7 +140,7 @@ const AddToFindRoommate = () => {
               type="email"
               name="email"
               className="input w-full"
-              value={user.email}
+              value={user?.email}
               readOnly
             />
           </fieldset>
@@ -151,7 +151,7 @@ const AddToFindRoommate = () => {
               type="text"
               name="userName"
               className="input w-full"
-              value={user.displayName}
+              value={user?.displayName}
               readOnly
             />
           </fieldset>

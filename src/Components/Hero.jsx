@@ -7,7 +7,7 @@ import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 const Hero = () => {
   return (
     <div>
-      <div className="w-12/12 mx-auto  bg-gradient-to-r from-blue-600 to-purple-600">
+      <div className="w-12/12 mx-auto pt-24 bg-gradient-to-r from-blue-600 to-purple-600">
         <h1 className="text-white text-xl md:text-2xl lg:text-5xl font-bold text-center">
           Largest Roommate Finder
         </h1>

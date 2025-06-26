@@ -12,6 +12,9 @@ import Privateroute from "../PrivateRoute/Privateroute";
 
 import Update from "../Pages/Update";
 import Detailspage from "../Pages/Detailspage";
+import DashBoardLayout from "../DashBoardLayout/DashBoardLayout";
+import ContactUs from "../Pages/ContactUs";
+import AboutUs from "../Pages/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -24,29 +27,13 @@ export const router = createBrowserRouter([
         Component: Home,
         hydrateFallbackElement: <Loading></Loading>,
       },
-      {
-        path: "addtofindroommate",
-        element: (
-          <Privateroute>
-            <Addtofindroommate></Addtofindroommate>
-          </Privateroute>
-        ),
-        hydrateFallbackElement: <Loading></Loading>,
-      },
+
       {
         path: "browselisting",
         element: <Browselisting></Browselisting>,
         hydrateFallbackElement: <Loading></Loading>,
       },
-      {
-        path: "mylisting",
-        element: (
-          <Privateroute>
-            <Mylisting></Mylisting>
-          </Privateroute>
-        ),
-        hydrateFallbackElement: <Loading></Loading>,
-      },
+
       {
         path: "login",
         Component: Login,
@@ -55,6 +42,16 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         Component: Signup,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "contactus",
+        Component: ContactUs,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "aboutus",
+        Component: AboutUs,
         hydrateFallbackElement: <Loading></Loading>,
       },
 
@@ -77,6 +74,20 @@ export const router = createBrowserRouter([
           fetch(`https://room-server.vercel.app/allroommate/${params.id}`),
         Component: Update,
         hydrateFallbackElement: <Loading></Loading>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    Component: DashBoardLayout,
+    children: [
+      {
+        path: "addtofindroommate",
+        element: <Addtofindroommate></Addtofindroommate>,
+      },
+      {
+        path: "mylisting",
+        element: <Mylisting></Mylisting>,
       },
     ],
   },
