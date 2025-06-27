@@ -1,6 +1,7 @@
 import React, { use, useEffect } from "react";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
+import { NavLink, Outlet } from "react-router";
 
 const AddToFindRoommate = () => {
   useEffect(() => {
@@ -39,6 +40,7 @@ const AddToFindRoommate = () => {
   };
 
   return (
+
     <div className="p-2 lg:px-24">
       <div className="p-12 w-full text-center  space-y-4">
         <h1 className="text-2xl lg:text-6xl w-full  font-bold">Add a Roommate Listing</h1>

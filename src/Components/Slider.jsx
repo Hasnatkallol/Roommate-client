@@ -39,11 +39,11 @@ const Slider = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-base-100 rounded-2xl  w-full p-8 shadow-xl flex flex-col items-center text-center gap-5">
+            <div className="bg-base-100  rounded-2xl  w-full p-8 shadow-xl flex flex-col items-center text-center gap-5">
               <img
                 src={slide.img}
                 alt={slide.title}
-                className="w-[100%] rounded-2xl lg:h-[500px] "
+                className="w-[100%] rounded-2xl h-[300px] lg:h-[500px] "
               />
               <h2 className="text-3xl font-bold">{slide.title}</h2>
               <p className="text-gray-500 max-w-xl">{slide.desc}</p>

@@ -42,7 +42,7 @@ const Detailspage = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-10 p-6 bg-white rounded-lg shadow-md max-w-3xl">
+    <div className="w-11/12 mx-auto py-32 my-10 p-6 bg-white rounded-lg shadow-md max-w-3xl">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold w-[40%]">{title}</h2>
         <h3>

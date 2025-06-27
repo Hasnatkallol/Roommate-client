@@ -15,6 +15,8 @@ import Detailspage from "../Pages/Detailspage";
 import DashBoardLayout from "../DashBoardLayout/DashBoardLayout";
 import ContactUs from "../Pages/ContactUs";
 import AboutUs from "../Pages/AboutUs";
+import DashboardDefault from "../Components/DashboardDefault";
+
 
 export const router = createBrowserRouter([
   {
@@ -77,18 +79,23 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "dashboard",
-    Component: DashBoardLayout,
-    children: [
-      {
-        path: "addtofindroommate",
-        element: <Addtofindroommate></Addtofindroommate>,
-      },
-      {
-        path: "mylisting",
-        element: <Mylisting></Mylisting>,
-      },
-    ],
-  },
+ {
+  path: "dashboard",
+  Component: DashBoardLayout,
+  children: [
+    {
+      index: true,  
+      element: <DashboardDefault />,
+    },
+    {
+      path: "addtofindroommate",
+      element: <Addtofindroommate />,
+    },
+    {
+      path: "mylisting",
+      element: <Mylisting />,
+    },
+  ],
+}
+
 ]);

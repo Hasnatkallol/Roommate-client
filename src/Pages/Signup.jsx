@@ -97,7 +97,7 @@ const Signup = () => {
 
   return (
     <div>
-      <div className="w-11/12 mx-auto  pt-15 card bg-base-200 max-w-sm shrink-0 shadow-2xl">
+      <div className="w-11/12 mx-auto my-2 pt-24 card bg-base-200 max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h1 className="text-black font-semibold text-center text-2xl">
             Register Your Account
