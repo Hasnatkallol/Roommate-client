@@ -1,18 +1,27 @@
-import React, { useContext } from "react";
-import { Link } from "react-router";
+import React, { use, useContext } from "react";
+import { Link, useNavigate } from "react-router";
 import { FirebaseAuthContext } from "../Firebase/FirebaseAuthContext";
 import { FaSignOutAlt } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
+import Swal from "sweetalert2";
 
 const DashBoardNavbar = () => {
-  const { user, logout } = useContext(FirebaseAuthContext);
+  const { user, logOut,  } = use(FirebaseAuthContext);
+  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (err) {
-      console.error("Logout failed:", err);
-    }
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged out successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -25,7 +34,7 @@ const DashBoardNavbar = () => {
             alt="RoommateFind Logo"
             className="w-10 h-10 rounded-full"
           />
-          <span className="text-xl font-semibold text-gray-800">RoommateFind</span>
+          <span className="text-xl font-semibold text-gray-800">RoommateFinder</span>
         </Link>
 
         {/* Right: User Info + Logout */}
