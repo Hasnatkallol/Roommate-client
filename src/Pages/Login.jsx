@@ -63,7 +63,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto pt-24 my-10 card bg-base-200 max-w-sm shrink-0 shadow-2xl">
+    <div className="w-11/12 mx-auto pt-28  card bg-base-200 max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <h1 className="text-black font-semibold text-center text-2xl mb-4">
           Login Your Account

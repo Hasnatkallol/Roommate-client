@@ -7,7 +7,7 @@ import { Link } from "react-router";
 const Roommate = ({ roommate }) => {
   return (
     <div>
-      <div className=" rounded-md border-1 p-2 shadow-md dark:bg-gray-50 dark:text-gray-800  h-auto md:h-[450px] lg:h-[390px]">
+      <div className=" rounded-md  p-2 shadow-md dark:bg-gray-50 dark:text-gray-800  h-auto md:h-[450px] lg:h-[440px]">
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
             <h2 className="text-xl lg:text-3xl font-semibold text-[#4fa3d1] tracking-wide">
